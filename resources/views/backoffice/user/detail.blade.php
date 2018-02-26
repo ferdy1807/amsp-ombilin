@@ -246,7 +246,21 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-rounded btn-{{$certificate->status}}">&nbsp;</button>
+                                        <button type="button" class="btn btn-sm btn-rounded btn-{{$certificate->status}}">
+                                            @php
+                                                if (isset($certificate->status)) {
+                                                    if ($certificate->status == 'danger') {
+                                                        echo "Sudah Expired";
+                                                    } elseif ($certificate->status == 'warning') {
+                                                        echo "0 - 1 Bulan Lagi";
+                                                    } elseif ($certificate->status == 'success') {
+                                                        echo "2 - 6 Bulan Lagi";
+                                                    } else {
+                                                        echo "Diatas 6 Bulan";
+                                                    }
+                                                }
+                                            @endphp 
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
