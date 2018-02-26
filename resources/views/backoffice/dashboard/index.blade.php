@@ -155,6 +155,20 @@ var myChart = new Chart(ctx, {
 
                     <div class="box box-info">
                         <div class="box-body">
+                            <p class="box-title">
+                                <b>Pilih Filter :</b>
+                                <form action="" method="get">                                    
+                                    <button type="submit" name="warning" name="warning" class="btn btn-sm btn-rounded btn-warning">
+                                        0 - 1 Bulan Lagi
+                                    </button>
+                                    <button type="submit" name="success" name="success" class="btn btn-sm btn-rounded btn-success">
+                                        2 - 6 Bulan Lagi
+                                    </button>
+                                    <button type="submit" name="primary" name="primary" class="btn btn-sm btn-rounded btn-primary">
+                                        Diatas 6 Bulan
+                                    </button>
+                                </form>
+                            </p><br><br>
                             <canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
                         </div>
                     </div>
