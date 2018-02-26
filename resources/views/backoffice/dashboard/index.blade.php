@@ -158,15 +158,19 @@ var myChart = new Chart(ctx, {
                             <p class="box-title">
                                 <b>Pilih Filter :</b>
                                 <form action="" method="get">                                    
-                                    <button type="submit" name="warning" name="warning" class="btn btn-sm btn-rounded btn-warning">
-                                        0 - 1 Bulan Lagi
+                                    <button type="submit" name="1month" class="btn btn-sm btn-rounded btn-primary">
+                                        1 Bulan terakhir
                                     </button>
-                                    <button type="submit" name="success" name="success" class="btn btn-sm btn-rounded btn-success">
-                                        2 - 6 Bulan Lagi
+                                    <button type="submit" name="3month" class="btn btn-sm btn-rounded btn-primary">
+                                        3 Bulan terakhir
                                     </button>
-                                    <button type="submit" name="primary" name="primary" class="btn btn-sm btn-rounded btn-primary">
-                                        Diatas 6 Bulan
+                                    <button type="submit" name="6month" class="btn btn-sm btn-rounded btn-primary">
+                                        6 Bulan terakhir
                                     </button>
+                                    <button type="submit" name="12month" class="btn btn-sm btn-rounded btn-primary">
+                                        1 Tahun terakhir
+                                    </button>
+                                    <a href="{{ url('/admin-backoffice/dashboard') }}"><div class="btn btn-sm btn-rounded btn-primary">Tampilkan Semua</div></a>
                                 </form>
                             </p><br><br>
                             <canvas id="myChart" style="width: 100%; height: 300px;"></canvas>

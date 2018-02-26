@@ -24,8 +24,10 @@ class DashboardController extends Controller
         $history                    = History::count();
         $user                       = User::count();
         $now                        = Carbon::now()->toDateString();
-        $one_month                  = Carbon::now()->addMonths(1)->toDateString();
-        $six_month                  = Carbon::now()->addMonths(6)->toDateString();
+        $one_month                  = Carbon::now()->addMonths(-1)->toDateString();
+        $three_month                = Carbon::now()->addMonths(-3)->toDateString();
+        $six_month                  = Carbon::now()->addMonths(-6)->toDateString();
+        $twelve_month               = Carbon::now()->addMonths(-12)->toDateString();
         $certificate_user           = Certificate::select('user_id', DB::raw('count(*) as total'))
             ->groupBy('user_id')
             ->get();
@@ -48,16 +50,15 @@ class DashboardController extends Controller
                 ->groupBy('user_id');
 
             // check status
-            if (isset($request['danger'])) {
-                $user_have_certificate = $user_have_certificate->where('date_expired', '<', $now);
-            } elseif (isset($request['warning'])) {
-                $user_have_certificate = $user_have_certificate->where('date_expired', '<', $one_month)
-                    ->where('date_expired', '>', $now);
-            } elseif (isset($request['success'])) {
-                $user_have_certificate = $user_have_certificate->where('date_expired', '<', $six_month)
-                    ->where('date_expired', '>', $one_month);
-            } elseif (isset($request['primary'])) {
-                $user_have_certificate = $user_have_certificate->where('date_expired', '>', $six_month);
+            // dd($one_month, $three_month, $six_month, $twelve_month);
+            if (isset($request['1month'])) {
+                $user_have_certificate = $user_have_certificate->where('created_at', '>', $one_month);                
+            } elseif (isset($request['3month'])) {
+                $user_have_certificate = $user_have_certificate->where('created_at', '>', $three_month);
+            } elseif (isset($request['6month'])) {
+                $user_have_certificate = $user_have_certificate->where('created_at', '>', $six_month);
+            } elseif (isset($request['12month'])) {
+                $user_have_certificate = $user_have_certificate->where('created_at', '>', $twelve_month);
             }
 
             // get data certificate
