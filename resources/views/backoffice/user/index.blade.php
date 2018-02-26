@@ -64,9 +64,9 @@
                                     </th>
                                     <th>
                                         Tanggal Dibuat
-                                    </th>
-                                    @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
+                                    </th>                                    
                                     <th>
+                                    @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
                                         <div class="form-group">
                                             <a href="{{route('backoffice.user.form')}}">
                                                 <button class="btn btn-primary">
@@ -75,9 +75,10 @@
                                                     Tambah User
                                                 </button>
                                             </a>
-                                        </div>
-                                    </th>
+                                        </div>                                    
                                     @endif
+                                        Aksi
+                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -122,6 +123,16 @@
                                             </span>
                                             Delete
                                         </button>
+                                    </td>                                    
+                                    @elseif (Auth::user()->level == \App\Models\User::ADMIN)
+                                    <td>
+                                        <a href="{{route('backoffice.user.detail',$user->id)}}">
+                                            <button class="btn btn-info" type="button">
+                                                <span class="fa fa-eye">
+                                                </span>
+                                                Detail
+                                            </button>
+                                        </a>
                                     </td>
                                     @endif
                                 </tr>
