@@ -56,7 +56,7 @@
                         {{isset($user->position->name) ? $user->position->name : "-"}}
                     </td>
                     <td>
-                        {{isset($user->grade->name) ? $user->grade->name : ="-"}}
+                        {{isset($user->grade->name) ? $user->grade->name : "-"}}
                     </td>
                     <td>
                         {{isset($user->unit->name) ? $user->unit->name : null}}
