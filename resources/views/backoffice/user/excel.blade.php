@@ -50,6 +50,9 @@
                         {{$user->nip}}
                     </td>
                     <td>
+                        {{$user->name}}
+                    </td>
+                    <td>
                         {{$user->date_of_birth}}
                     </td>
                     <td>
