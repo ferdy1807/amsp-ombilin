@@ -17,17 +17,22 @@
                         <div class="row">
                             <form action="" method="get">
                                 <div class="form-group">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
-                                            {!! Form::text('search_date_training',Input::get('search_date_training') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Diklat', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
+                                            {!! Form::text('search_date_training',Input::get('search_date_training') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Mulai Diklat', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            {!! Form::text('search_end_date_training',Input::get('search_date_training') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Selesai Diklat', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="form-group">
                                             {!! Form::text('search_created_at',Input::get('search_created_at') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Pembuatan Data', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 form-inline">
+                                    <div class="col-sm-6 form-inline">
                                         <button class="btn btn-default btn-block" type="submit">
                                             <span class="fa fa-search">
                                             </span>
@@ -36,8 +41,9 @@
                                     </div>
                                 </div>
                             </form>
+                            @if (\Auth::user()->level != \App\Models\User::USER)
                             <a href="{{ route('backoffice.training.export', Input::all()) }}">
-                                <div class="col-sm-3 form-inline">
+                                <div class="col-sm-6 form-inline">
                                     <button class="btn btn-success btn-block" type="submit">
                                         <span class="fa fa-upload">
                                         </span>
@@ -45,9 +51,9 @@
                                     </button>
                                 </div>
                             </a>
+                            @endif
                         </div>
-                        <h3 class="box-title">
-                        </h3>
+                        <h3 class="box-title"></h3>
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover table-bordered display" id="myTable" cellspacing="0" width="100%">
                                 <thead>
@@ -62,7 +68,10 @@
                                         Judul Diklat
                                     </th>
                                     <th>
-                                        Tanggal Diklat
+                                        Tanggal Diklat Mulai
+                                    </th>
+                                    <th>
+                                        Tanggal Diklat Selesai
                                     </th>
                                     <th>
                                         Tempat Diklat
@@ -71,7 +80,7 @@
                                         Nama User
                                     </th>
                                     <th>
-                                        Tanggal Di Buat
+                                        Tanggal Data Di Buat
                                     </th>
                                     @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
                                     <th>
@@ -102,6 +111,11 @@
                                     </td>
                                     <td>
                                         <?php echo date("d M Y", strtotime($training->date_training)); ?>
+                                    </td>
+                                    <td>
+                                        @isset ($training->end_date_training)
+                                            <?php echo date("d M Y", strtotime($training->end_date_training)); ?>
+                                        @endisset
                                     </td>
                                     <td>
                                         {{$training->place_training}}

@@ -10,6 +10,7 @@ use App\Models\Unit;
 use App\Models\User;
 use Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -138,8 +139,8 @@ class UserController extends Controller
         $created_at = $request->input('search_created_at');
         if (!empty($created_at)) {
             $created    = (explode("-", $created_at));
-            $start_date = date("Y-m-d", strtotime(trim($created[0])));
-            $end_date   = date("Y-m-d", strtotime(trim($created[1])));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
             //search users by name
             $users = $users->where('created_at', '>=', $start_date)
                 ->where('created_at', '<=', $end_date);
@@ -180,10 +181,18 @@ class UserController extends Controller
      */
     public function detail($id = '')
     {
-        $user = User::find($id);
+        $user = User::with('certificate', 'training')->find($id);
         if (empty($user)) {
             Alert::error("User Tidak Ditemukan");
             return back();
+        }
+
+        // check if user level
+        if (Auth::user()->level == User::USER) {
+            if (Auth::user()->id != $user->id) {
+                Alert::error("User Tidak Ditemukan");
+                return back();
+            }
         }
 
         //return page create User

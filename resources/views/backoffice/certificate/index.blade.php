@@ -17,17 +17,17 @@
                         <div class="row">
                             <form action="" method="get">
                                 <div class="form-group">
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
-                                            {!! Form::text('search_date_expired',Input::get('search_date_expired') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Kadaluarsa', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
+                                            {!! Form::text('search_date_expired',Input::get('search_date_expired') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Kadaluarsa', 'data-tanggal' => Input::get('search_date_expired')?: '']) !!}
                                         </div>
                                     </div>
-                                    <div class="col-sm-3">
+                                    <div class="col-sm-6">
                                         <div class="form-group">
-                                            {!! Form::text('search_created_at',Input::get('search_created_at') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Pembuatan Data', 'data-tanggal' => Input::get('searchdate')?: '']) !!}
+                                            {!! Form::text('search_created_at',Input::get('search_created_at') , ['class' => 'form-control demo searchdate', 'data-date-format' => 'yyyy-mm-dd','placeholder'=> 'Cari Tanggal Pembuatan Data', 'data-tanggal' => Input::get('search_created_at')?: '']) !!}
                                         </div>
                                     </div>
-                                    <div class="col-sm-3 form-inline">
+                                    <div class="col-sm-6 form-inline">
                                         <button class="btn btn-default btn-block" type="submit">
                                             <span class="fa fa-search">
                                             </span>
@@ -36,8 +36,9 @@
                                     </div>
                                 </div>
                             </form>
+                            @if (\Auth::user()->level != \App\Models\User::USER)
                             <a href="{{ route('backoffice.certificate.export',Input::all()) }}">
-                                <div class="col-sm-3 form-inline">
+                                <div class="col-sm-6 form-inline">
                                     <button class="btn btn-success btn-block" type="submit">
                                         <span class="fa fa-upload">
                                         </span>
@@ -45,9 +46,24 @@
                                     </button>
                                 </div>
                             </a>
-                        </div>
+                            @endif
+                        </div><br>
                         <h3 class="box-title">
-                            Status : <b>Merah = Sudah Expired; Orange = 1 Bulan Lagi; Hijau = 6 Bulan Lagi; Biru = 1 Tahun Lagi;</b>
+                            <b>Pilih Filter :</b>
+                            <form action="" method="get">
+                                <button type="submit" name="danger" name="danger" class="btn btn-sm btn-rounded btn-danger">
+                                    Sudah Expired
+                                </button>
+                                <button type="submit" name="warning" name="warning" class="btn btn-sm btn-rounded btn-warning">
+                                    0 - 1 Bulan Lagi
+                                </button>
+                                <button type="submit" name="success" name="success" class="btn btn-sm btn-rounded btn-success">
+                                    2 - 6 Bulan Lagi
+                                </button>
+                                <button type="submit" name="primary" name="primary" class="btn btn-sm btn-rounded btn-primary">
+                                    Diatas 6 Bulan
+                                </button>
+                            </form>
                         </h3><br><br>
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover table-bordered display" id="myTable" cellspacing="0" width="100%">
@@ -73,6 +89,9 @@
                                     </th>
                                     <th>
                                         Tanggal Dibuat
+                                    </th>
+                                    <th>
+                                        Tanggal Kadaluarsa
                                     </th>
                                     <th>
                                         Download
@@ -120,12 +139,29 @@
                                         <?php echo date("d M Y", strtotime($certificate->created_at)); ?>
                                     </td>
                                     <td>
+                                        <?php echo date("d M Y", strtotime($certificate->date_expired)); ?>
+                                    </td>
+                                    <td>
                                         <a href="{{ $certificate->file_url }}" target="_blank">
                                             Download Data
                                         </a>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-sm btn-rounded btn-{{$certificate->status}}">&nbsp;</button>
+                                        <button type="button" class="btn btn-sm btn-rounded btn-{{$certificate->status}}">
+                                            @php
+                                                if (isset($certificate->status)) {
+                                                    if ($certificate->status == 'danger') {
+                                                        echo "Sudah Expired";
+                                                    } elseif ($certificate->status == 'warning') {
+                                                        echo "0 - 1 Bulan Lagi";
+                                                    } elseif ($certificate->status == 'success') {
+                                                        echo "2 - 6 Bulan Lagi";
+                                                    } else {
+                                                        echo "Diatas 6 Bulan";
+                                                    }
+                                                }
+                                            @endphp 
+                                        </button>
                                     </td>
                                     @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
                                     <td>
@@ -169,6 +205,13 @@
 </div>
 @stop
 
+@section('css')
+<style type="text/css">
+    .red{
+        color: red;
+    }
+</style>
+@stop
 @section('js')
 <script>
     $(document).on('click', '.btn-delete', function(id) {

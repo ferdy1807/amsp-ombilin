@@ -44,7 +44,8 @@ class Certificate extends Model
         } elseif ($expired > $now && $expired < $six_month) {
             // enam bulan
             return 'success';
-        } elseif ($expired > $now && $expired < $one_year) {
+            // } elseif ($expired > $now && $expired < $one_year) {
+        } else {
             // satu tahun
             return 'primary';
         }

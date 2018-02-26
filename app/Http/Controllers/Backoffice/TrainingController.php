@@ -114,19 +114,30 @@ class TrainingController extends Controller
         $date_training = $request->input('search_date_training');
         if (!empty($date_training)) {
             $created    = (explode("-", $date_training));
-            $start_date = date("Y-m-d", strtotime(trim($created[0])));
-            $end_date   = date("Y-m-d", strtotime(trim($created[1])));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
             //search training by name
             $trainings = $trainings->where('date_training', '>=', $start_date)
                 ->where('date_training', '<=', $end_date);
+        }
+
+        //check if request search training finish
+        $end_date_training = $request->input('search_end_date_training');
+        if (!empty($end_date_training)) {
+            $created    = (explode("-", $end_date_training));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
+            //search training by name
+            $trainings = $trainings->where('end_date_training', '>=', $start_date)
+                ->where('end_date_training', '<=', $end_date);
         }
 
         //check if request search training
         $created_at = $request->input('search_created_at');
         if (!empty($created_at)) {
             $created    = (explode("-", $created_at));
-            $start_date = date("Y-m-d", strtotime(trim($created[0])));
-            $end_date   = date("Y-m-d", strtotime(trim($created[1])));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
             //search training by name
             $trainings = $trainings->where('created_at', '>=', $start_date)
                 ->where('created_at', '<=', $end_date);

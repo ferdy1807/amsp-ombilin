@@ -44,7 +44,7 @@
                         {{$key+1}}
                     </td>
                     <td>
-                        {{$certificate->nip}}
+                        {{$certificate->user->nip}}
                     </td>
                     <td>
                         {{$certificate->name}}

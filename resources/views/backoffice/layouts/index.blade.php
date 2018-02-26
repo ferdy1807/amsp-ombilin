@@ -92,8 +92,7 @@
                 linkedCalendars: false,
                 alwaysShowCalendars: true,
                 startDate: firstDay,
-                endDate: lastDay,
-                maxDate: moment().startOf('day').add(date)
+                endDate: lastDay
             }, function(start, end, label) {}).val(valuetanggal);
         </script>
         <script type="text/javascript">

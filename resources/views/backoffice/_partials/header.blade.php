@@ -26,6 +26,53 @@
         </a>
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+                <!-- Notifications: style can be found in dropdown.less -->
+                <li class="dropdown notifications-menu">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-bell-o">
+                        </i>
+                        <span class="label label-warning">
+                            {{ count($certificate_expireds)+count($certificate_warnings) }}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="header">
+                            You have {{ count($certificate_expireds)+count($certificate_warnings) }} notifications
+                        </li>
+                        <li>
+                            <ul class="menu">
+                                @foreach ($certificate_expireds as $certificate_expired)
+                                    <li style="background-text: red;">
+                                        @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
+                                            <a href="{{ route('backoffice.certificate.form', $certificate_expired->id) }}">
+                                        @else
+                                            <a href="#">
+                                        @endif
+                                        <p>
+                                            Sertifikat {{ $certificate_expired->name }} Telah Kadaluarsa <br> 
+                                            Pegawai : {{ $certificate_expired->user->name }}
+                                        </p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                                @foreach ($certificate_warnings as $certificate_warning)
+                                    <li>
+                                        @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
+                                            <a href="{{ route('backoffice.certificate.form', $certificate_warning->id) }}">
+                                        @else
+                                            <a href="#">
+                                        @endif
+                                        <p>
+                                            Sertifikat : {{ $certificate_warning->name }} <br>Kadaluarsa : {{ $certificate_warning->date_expired }} <br>
+                                            Pegawai : {{ $certificate_warning->user->name }} 
+                                        </p>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

@@ -60,7 +60,7 @@
                                         Jabatan
                                     </th>
                                     <th>
-                                        Image
+                                        Bagian
                                     </th>
                                     <th>
                                         Tanggal Dibuat
@@ -93,11 +93,10 @@
                                         {{$user->name}}
                                     </td>
                                     <td>
-                                        {{$user->position}}
+                                        {{ isset($user->position->name) ? $user->position->name : "-"}}
                                     </td>
                                     <td>
-                                        <img src="{{$user->image_file}}" width="100px">
-                                        </img>
+                                        {{ isset($user->unit) ? $user->unit->name : "-" }}
                                     </td>
                                     <td>
                                         <?php echo date("d M Y", strtotime($user->created_at)); ?>
@@ -109,6 +108,13 @@
                                                 <span class="fa fa-edit">
                                                 </span>
                                                 Edit
+                                            </button>
+                                        </a>
+                                        <a href="{{route('backoffice.user.detail',$user->id)}}">
+                                            <button class="btn btn-info" type="button">
+                                                <span class="fa fa-eye">
+                                                </span>
+                                                Detail
                                             </button>
                                         </a>
                                         <button class="btn btn-danger btn-delete" type="button" value="{{$user->id}}">

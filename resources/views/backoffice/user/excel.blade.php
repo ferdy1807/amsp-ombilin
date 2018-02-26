@@ -53,13 +53,13 @@
                         {{$user->date_of_birth}}
                     </td>
                     <td>
-                        {{$user->position}}
+                        {{isset($user->position->name) ? $user->position->name : "-"}}
                     </td>
                     <td>
-                        {{$user->grade}}
+                        {{isset($user->grade->name) ? $user->grade->name : ="-"}}
                     </td>
                     <td>
-                        {{$user->unit}}
+                        {{isset($user->unit->name) ? $user->unit->name : null}}
                     </td>
                     <td>
                         {{$user->email}}

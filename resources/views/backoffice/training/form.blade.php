@@ -47,9 +47,15 @@
                             </div>
                             <div class="form-group">
                                 <label class="required">
-                                    Tanggal Diklat
+                                    Tanggal Diklat Mulai
                                 </label>
-                                {!! Form::text('date_training', isset($training->date_training) ? $training->date_training : old('date_training') ?: null, ['class' => 'form-control datepicker','placeholder'=>'Tanggal Diklat']) !!}
+                                {!! Form::text('date_training', isset($training->date_training) ? $training->date_training : old('date_training') ?: null, ['class' => 'form-control datepicker','placeholder'=>'Tanggal Diklat Mulai']) !!}
+                            </div>
+                            <div class="form-group">
+                                <label class="required">
+                                    Tanggal Diklat Selesai
+                                </label>
+                                {!! Form::text('end_date_training', isset($training->end_date_training) ? $training->end_date_training : old('end_date_training') ?: null, ['class' => 'form-control datepicker','placeholder'=>'Tanggal Diklat Selesai']) !!}
                             </div>
                             <div class="form-group">
                                 <label class="required">

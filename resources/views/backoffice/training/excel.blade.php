@@ -27,7 +27,10 @@
                         Judul Diklat
                     </th>
                     <th>
-                        Tanggal Diklat
+                        Tanggal Mulai Diklat
+                    </th>
+                    <th>
+                        Tanggal Selesai Diklat
                     </th>
                     <th>
                         Tempat Diklat
@@ -47,7 +50,7 @@
                         {{$key+1}}
                     </td>
                     <td>
-                        {{$training->nip}}
+                        {{$training->user->nip}}
                     </td>
                     <td>
                         {{$training->name}}
@@ -60,6 +63,9 @@
                     </td>
                     <td>
                         {{$training->date_training}}
+                    </td>
+                    <td>
+                        {{$training->end_date_training}}
                     </td>
                     <td>
                         {{$training->place_training}}

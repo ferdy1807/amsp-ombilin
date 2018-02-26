@@ -13,6 +13,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer('backoffice._partials.side', 'App\Composer\SideBarComposer');
+        View::composer('backoffice._partials.header', 'App\Composer\HeaderComposer');
     }
 
     /**

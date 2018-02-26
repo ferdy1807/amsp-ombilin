@@ -6,8 +6,10 @@ use App\Http\Requests\Backoffice\CertificateRequest;
 use App\Models\Certificate;
 use App\Models\History;
 use App\Models\User;
+use Carbon\Carbon;
 use Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class CertificateController extends Controller
@@ -20,6 +22,10 @@ class CertificateController extends Controller
     public function index(Request $request)
     {
         $certificates = $this->search($request);
+
+        if (Auth::user()->level == User::USER) {
+            $certificates = $certificates->where('user_id', Auth::user()->id);
+        }
 
         //get certificate
         $certificates = $certificates->get();
@@ -121,13 +127,29 @@ class CertificateController extends Controller
     {
         //get certificate sort by name
         $certificates = Certificate::orderBy('id', 'desc');
+        $now          = Carbon::now()->toDateString();
+        $one_month    = Carbon::now()->addMonths(1)->toDateString();
+        $six_month    = Carbon::now()->addMonths(6)->toDateString();
+
+        // check status
+        if (isset($request['danger'])) {
+            $certificates->where('date_expired', '<', $now);
+        } elseif (isset($request['warning'])) {
+            $certificates->where('date_expired', '<', $one_month)
+                ->where('date_expired', '>', $now);
+        } elseif (isset($request['success'])) {
+            $certificates->where('date_expired', '<', $six_month)
+                ->where('date_expired', '>', $one_month);
+        } elseif (isset($request['primary'])) {
+            $certificates->where('date_expired', '>', $six_month);
+        }
 
         //check if request search certificate
-        $search_date_expired = $request->input('search_search_date_expired');
+        $search_date_expired = $request->input('search_date_expired');
         if (!empty($search_date_expired)) {
             $created    = (explode("-", $search_date_expired));
-            $start_date = date("Y-m-d", strtotime(trim($created[0])));
-            $end_date   = date("Y-m-d", strtotime(trim($created[1])));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
             //search certificate by name
             $certificates = $certificates->where('date_expired', '>=', $start_date)
                 ->where('date_expired', '<=', $end_date);
@@ -137,8 +159,8 @@ class CertificateController extends Controller
         $created_at = $request->input('search_created_at');
         if (!empty($created_at)) {
             $created    = (explode("-", $created_at));
-            $start_date = date("Y-m-d", strtotime(trim($created[0])));
-            $end_date   = date("Y-m-d", strtotime(trim($created[1])));
+            $start_date = date("Y-m-d", strtotime(trim($created[0]))) . " 00:00:00";
+            $end_date   = date("Y-m-d", strtotime(trim($created[1]))) . " 23:59:59";
             //search certificate by name
             $certificates = $certificates->where('created_at', '>=', $start_date)
                 ->where('created_at', '<=', $end_date);

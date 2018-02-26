@@ -111,6 +111,11 @@ class SideBarComposer
                     'icon' => 'fa fa-address-card-o',
                     'menu' => 'Diklat',
                 ],
+                [
+                    'code' => 'backoffice.certificates',
+                    'icon' => 'fa fa-credit-card',
+                    'menu' => 'Sertifikat',
+                ],
             ];
         }
 

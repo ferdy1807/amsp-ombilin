@@ -55,70 +55,9 @@ var myChart = new Chart(ctx, {
 @stop
 @section('content')
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        @if (count($certificate_warnings) > 0)
-        <div class="alert alert-warning alert-dismissible fade in" role="alert">
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">
-                    ×
-                </span>
-            </button>
-            @foreach ($certificate_warnings as $certificate_warning)
-            @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
-                <a href="{{ route('backoffice.certificate.form', $certificate_warning->id) }}">
-            @endif
-            <p>
-                Sertifikat {{ $certificate_warning->name }} dengan User {{ $certificate_warning->user->name }} akan kadaluarsa di tanggal {{ $certificate_warning->date_expired }}
-            </p>
-            @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
-                </a>
-            @endif
-            @endforeach
-        </div>
-        @endif
-        @if (count($certificate_expireds) > 0)
-        <div class="alert alert-danger alert-dismissible fade in" role="alert">
-            <button aria-label="Close" class="close" data-dismiss="alert" type="button">
-                <span aria-hidden="true">
-                    ×
-                </span>
-            </button>
-            @foreach ($certificate_expireds as $certificate_expired)
-            @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
-                <a href="{{ route('backoffice.certificate.form', $certificate_expired->id) }}">
-            @endif
-            <p>
-                Sertifikat {{ $certificate_expired->name }} Telah Kadaluarsa dengan user {{ $certificate_expired->user->name }}
-            </p>
-            @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
-                </a>
-            @endif
-            @endforeach
-        </div>
-        @endif
-    </section>
     <!-- Main content -->
     <section class="content">
         @if (Auth::user()->level != \App\Models\User::USER)
-        <!-- Small boxes (Stat box) -->
-        <div class="col-lg-3 col-xs-6">
-            <!-- small box -->
-            <div class="small-box bg-aqua">
-                <div class="inner">
-                    <h3>
-                        {{ $certificate }}
-                    </h3>
-                    <p>
-                        Sertifikat
-                    </p>
-                </div>
-                <div class="icon">
-                    <i class="fa fa-credit-card">
-                    </i>
-                </div>
-            </div>
-        </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -135,6 +74,9 @@ var myChart = new Chart(ctx, {
                     <i class="fa fa-history">
                     </i>
                 </div>
+                <a href="{{ route('backoffice.histories') }}" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         <!-- ./col -->
@@ -153,9 +95,33 @@ var myChart = new Chart(ctx, {
                     <i class="fa fa-user">
                     </i>
                 </div>
+                <a href="{{ route('backoffice.users') }}" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
         @endif
+        <!-- Small boxes (Stat box) -->
+        <div class="col-lg-3 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>
+                        {{ $certificate }}
+                    </h3>
+                    <p>
+                        Sertifikat
+                    </p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-credit-card">
+                    </i>
+                </div>
+                <a href="{{ route('backoffice.certificates') }}" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
             <!-- small box -->
@@ -172,6 +138,9 @@ var myChart = new Chart(ctx, {
                     <i class="fa fa-address-card-o">
                     </i>
                 </div>
+                <a href="{{ route('backoffice.trainings') }}" class="small-box-footer">
+                    More info <i class="fa fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
 
@@ -186,7 +155,7 @@ var myChart = new Chart(ctx, {
 
                     <div class="box box-info">
                         <div class="box-body">
-                            <canvas id="myChart" width="400" height="400"></canvas>
+                            <canvas id="myChart" style="width: 100%; height: 300px;"></canvas>
                         </div>
                     </div>
                 @endif

@@ -34,18 +34,27 @@ Route::group(['prefix' => 'admin-backoffice', 'namespace' => 'Backoffice'], func
         // Training
         Route::get('trainings', 'TrainingController@index')->name('backoffice.trainings');
 
+        // Certificate
+        Route::get('certificates', 'CertificateController@index')->name('backoffice.certificates');
+
         // routing for admin
         Route::group(['middleware' => 'auth.admin'], function () {
             //User
             Route::get('users', 'UserController@index')->name('backoffice.users');
+            Route::get('user/export', 'UserController@export')->name('backoffice.user.export');
+
             // Certificate
-            Route::get('certificates', 'CertificateController@index')->name('backoffice.certificates');
+            Route::get('certificate/export', 'CertificateController@export')->name('backoffice.certificate.export');
+
             // Grades
             Route::get('grades', 'GradeController@index')->name('backoffice.grades');
             // Positions
             Route::get('positions', 'PositionController@index')->name('backoffice.positions');
             // Units
             Route::get('units', 'UnitController@index')->name('backoffice.units');
+
+            // trainings
+            Route::get('training/export', 'TrainingController@export')->name('backoffice.training.export');
 
         });
 
@@ -56,19 +65,16 @@ Route::group(['prefix' => 'admin-backoffice', 'namespace' => 'Backoffice'], func
             Route::get('certificate/form/{id?}', 'CertificateController@form')->name('backoffice.certificate.form');
             Route::post('certificate/store/{id?}', 'CertificateController@save')->name('backoffice.certificate.save');
             Route::delete('certificate/delete/{id?}', 'CertificateController@delete')->name('backoffice.certificate.delete');
-            Route::get('certificate/export', 'CertificateController@export')->name('backoffice.certificate.export');
 
             //User
             Route::get('user/form/{id?}', 'UserController@form')->name('backoffice.user.form');
             Route::post('user/store/{id?}', 'UserController@save')->name('backoffice.user.save');
             Route::delete('user/delete/{id?}', 'UserController@delete')->name('backoffice.user.delete');
-            Route::get('user/export', 'UserController@export')->name('backoffice.user.export');
 
             // Training
             Route::get('training/form/{id?}', 'TrainingController@form')->name('backoffice.training.form');
             Route::post('training/store/{id?}', 'TrainingController@save')->name('backoffice.training.save');
             Route::delete('training/delete/{id?}', 'TrainingController@delete')->name('backoffice.training.delete');
-            Route::get('training/export', 'TrainingController@export')->name('backoffice.training.export');
 
             // Histories
             Route::get('histories', 'HistoryController@index')->name('backoffice.histories');
