@@ -78,9 +78,12 @@
                                     </th>
                                     <th>
                                         Nama User
-                                    </th>
+                                    </th>                                    
                                     <th>
                                         Tanggal Data Di Buat
+                                    </th>
+                                    <th>
+                                        Mengikuti Diklat
                                     </th>
                                     @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
                                     <th>
@@ -125,6 +128,21 @@
                                     </td>
                                     <td>
                                         <?php echo date("d M Y", strtotime($training->created_at)); ?>
+                                    </td>
+                                    <td>                                        
+                                            @php
+                                                if (isset($training->follow)) {
+                                                    if ($training->follow == '1') {
+                                            @endphp             
+                                                <button class="btn btn-primary" type="button">Mengikuti</button>
+                                            @php
+                                                    } else {
+                                            @endphp             
+                                                <button class="btn btn-danger" type="button">Tidak Mengikuti</button>
+                                            @php
+                                                    }
+                                                }
+                                            @endphp 
                                     </td>
                                     @if (Auth::user()->level == \App\Models\User::SUPERADMIN)
                                     <td>
