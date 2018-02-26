@@ -35,7 +35,7 @@
                             {{ count($certificate_expireds)+count($certificate_warnings) }}
                         </span>
                     </a>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" style="width: 500px;">
                         <li class="header">
                             You have {{ count($certificate_expireds)+count($certificate_warnings) }} notifications
                         </li>
