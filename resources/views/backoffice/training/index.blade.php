@@ -93,7 +93,7 @@
                                         Nama User
                                     </th>                                    
                                     <th>
-                                        Tanggal Data Di Buat
+                                        Nomor Surang Panggilan
                                     </th>
                                     <th>
                                         Mengikuti Diklat
@@ -140,7 +140,7 @@
                                         {{$training->user->name}}
                                     </td>
                                     <td>
-                                        <?php echo date("d M Y", strtotime($training->created_at)); ?>
+                                        {{$training->no_mail_call}}
                                     </td>
                                     <td>                                        
                                             @php

@@ -76,8 +76,9 @@
                                                 </button>
                                             </a>
                                         </div>                                    
-                                    @endif
+                                    @else
                                         Aksi
+                                    @endif
                                     </th>
                                 </tr>
                                 </thead>
