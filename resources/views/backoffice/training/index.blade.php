@@ -52,8 +52,21 @@
                                 </div>
                             </a>
                             @endif
-                        </div>
-                        <h3 class="box-title"></h3>
+                        </div><br>
+                        <h3 class="box-title">
+                            <b>Pilih Filter :</b>
+                            <form action="" method="get">
+                                <button type="submit" name="primary" name="primary" class="btn btn-sm btn-rounded btn-primary">
+                                    Mengikuti
+                                </button>
+                                <button type="submit" name="danger" name="danger" class="btn btn-sm btn-rounded btn-danger">
+                                    Tidak Mengikuti
+                                </button>
+                                <a href="{{ url('/admin-backoffice/trainings') }}">
+                                    <div class="btn btn-sm btn-rounded btn-default">Tampilkan Semua</div>
+                                </a>
+                            </form>
+                        </h3><br><br>
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover table-bordered display" id="myTable" cellspacing="0" width="100%">
                                 <thead>

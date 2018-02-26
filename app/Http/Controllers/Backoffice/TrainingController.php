@@ -110,6 +110,13 @@ class TrainingController extends Controller
             $trainings = $trainings->where('user_id', Auth::user()->id);
         }
 
+        // check status
+        if (isset($request['danger'])) {
+            $trainings = $trainings->where('follow', '=', 2);
+        } elseif (isset($request['primary'])) {
+            $trainings = $trainings->where('follow', '=', 1);
+        }
+
         //check if request search training
         $date_training = $request->input('search_date_training');
         if (!empty($date_training)) {
