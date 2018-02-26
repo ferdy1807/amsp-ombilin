@@ -63,6 +63,9 @@
                                 <button type="submit" name="primary" name="primary" class="btn btn-sm btn-rounded btn-primary">
                                     Diatas 6 Bulan
                                 </button>
+                                <a href="{{ url('/admin-backoffice/certificates') }}">
+                                    <div class="btn btn-sm btn-rounded btn-default">Tampilkan Semua</div>
+                                </a>
                             </form>
                         </h3><br><br>
                         <div class="box-body table-responsive no-padding">
