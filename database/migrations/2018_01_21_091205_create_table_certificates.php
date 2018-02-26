@@ -19,7 +19,7 @@ class CreateTableCertificates extends Migration
             $table->string('certificate_code');
             $table->string('value')->nullable();
             $table->string('file');
-            $table->date('date_expired');
+            $table->date('date_expired')->nullable();
             $table->integer('user_id');
             $table->timestamps();
             $table->softDeletes();
