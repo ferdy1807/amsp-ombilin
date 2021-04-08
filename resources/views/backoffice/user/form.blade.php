@@ -127,15 +127,8 @@
 @section('script')
 <script type="text/javascript">
     $(function() {
-        //Timepicker
-        $(".timepicker").timepicker({
-            use24hours: true,
-            showInputs: false
-        });
-    });
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd'
-    });    
+        $(".timepicker").timepicker({use24hours: true, showInputs: false});});
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
     $(".js-select2").select2({
         language: '{{ app()->getLocale() }}'
     });

@@ -62,8 +62,8 @@
                                 </label>
                                 <br>
                                     * isi data jika ingin merubah
-                                    <a href="{{ $certificate->file_url }}" target="_blank">
-                                        Link Data
+                                    <a href="{{ asset('public/medias/certificate/'.$certificate->file) }}" target="_blank">
+                                        Sertifikat
                                     </a>
                                     @endif
                                 {!! Form::file('file', ['class' => 'form-control']) !!}

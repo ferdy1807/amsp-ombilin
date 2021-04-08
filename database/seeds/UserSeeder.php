@@ -17,6 +17,7 @@ class UserSeeder extends Seeder
             'email'    => 'superadmin@mail.com',
             'password' => Hash::make('admin2018'),
             'level'    => User::SUPERADMIN,
+            'image'    => 'default.png'
         ];
         User::create($new_user);
 
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             'email'    => 'admin@mail.com',
             'password' => Hash::make('admin2018'),
             'level'    => User::ADMIN,
+            'image'    => 'default.png'
         ];
         User::create($new_user);
 
@@ -33,7 +35,16 @@ class UserSeeder extends Seeder
             'email'    => 'user@mail.com',
             'password' => Hash::make('admin2018'),
             'level'    => User::USER,
+            'image'    => 'default.png'
         ];
         User::create($new_user);
+
+        $new_user = [
+          'name' =>'yuda',
+          'email' =>'yuda@gmail.com',
+          'password' => Hash::make('admin2018'),
+          'level'    => User::USER,
+        ];
+          User::create($new_user);
     }
 }

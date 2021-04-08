@@ -1,6 +1,6 @@
 @extends('backoffice.layouts.index')
 @section('js')
-<script src="{{url('backoffice/dist/js/loader.js')}}" type="text/javascript"></script>
+<script src="{{url('public/backoffice/dist/js/loader.js')}}" type="text/javascript"></script>
 <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);

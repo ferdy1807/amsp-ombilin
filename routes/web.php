@@ -1,4 +1,4 @@
-<?php
+s<?php
 
 /*
 |--------------------------------------------------------------------------
@@ -11,19 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //route for backoffice
-Route::group(['prefix' => 'admin-backoffice', 'namespace' => 'Backoffice'], function () {
+//
+Route::group(['namespace' => 'Backoffice'], function () {
+
     //login and logout
     Route::get('/', 'AuthController@index')->name('backoffice.login.form');
-    Route::post('/', 'AuthController@login')->name('backoffice.login');
+    Route::post('/login', 'AuthController@login')->name('backoffice.login');
     Route::get('logout', 'AuthController@logout')->name('backoffice.logout');
 
     //route for backoffice
-    Route::group(['middleware' => 'auth.backoffice'], function () {
+    Route::group(['prefix' => 'admin-backoffice', 'middleware' => 'auth.backoffice'], function () {
 
         //dashboard
         Route::get('dashboard', 'DashboardController@index')->name('backoffice.dashboard');

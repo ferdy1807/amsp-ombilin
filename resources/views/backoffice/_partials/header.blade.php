@@ -11,9 +11,9 @@
         <!-- logo for regular state and mobile devices -->
         <span class="logo-lg">
             <b>
-                PLN
+                AMSP 
             </b>
-            Backoffice
+            PLN
         </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
@@ -76,16 +76,20 @@
                 <!-- User Account: style can be found in dropdown.less -->
                 <li class="dropdown user user-menu">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <img alt="User Image" class="user-image" src="{{ asset(Auth::user()->image_file)}}">
+                        <img alt="User Image" class="user-image" src="{{ url('public/medias/users/'.Auth::user()->image)}}">
                             <span class="hidden-xs">
-                                {{Auth::user()->name}}
+                                {{ Auth::user()->name}}
                             </span>
                         </img>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
-                            <img alt="User Image" class="img-circle" src="{{ asset(Auth::user()->image_file)}}">
+                            @if(Auth::user()->image)
+                            <img alt="User Image" class="img-circle" src="{{ url('public/medias/users/'.Auth::user()->image)}}">
+                            @else
+                            <img alt="User Image" class="img-circle" src="{{ url('public/medias/users/default.png')}}">
+                            @endif
                                 <p>
                                     {{Auth::user()->name}}
                                 </p>

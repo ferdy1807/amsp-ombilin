@@ -145,7 +145,7 @@
                                         <?php echo date("d M Y", strtotime($certificate->date_expired)); ?>
                                     </td>
                                     <td>
-                                        <a href="{{ $certificate->file_url }}" target="_blank">
+                                        <a href="{{ asset('public/medias/certificate/'.$certificate->file) }}" target="_blank">
                                             Download Data
                                         </a>
                                     </td>

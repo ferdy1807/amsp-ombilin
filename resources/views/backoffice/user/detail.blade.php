@@ -71,7 +71,7 @@
                             <label>
                                 Image
                             </label><br>
-                                <img accept="image/*" src="{{ $user->image_file }}" style="height:100px;width:100px;"/>
+                                <img accept="image/*" src="{{ url('public/medias/users/'.$user->image) }}" style="height:100px;width:100px;"/>
                             </br>
                         </div>
                         <div class="form-group">

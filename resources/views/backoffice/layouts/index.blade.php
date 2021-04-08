@@ -8,16 +8,16 @@
         </title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <meta content="{{ csrf_token() }}" name="csrf-token">
-        <link href="{{url('backoffice/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/bower_components/Ionicons/css/ionicons.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/bower_components/PACE/pace.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/dist/css/AdminLTE.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/dist/css/datatable.css')}}" rel="stylesheet">
-        <link href="{{url('backoffice/sweetalert/sweetalert2.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{url('backoffice/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{url('public/backoffice/bower_components/bootstrap/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/bower_components/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/bower_components/Ionicons/css/ionicons.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/bower_components/PACE/pace.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/dist/css/AdminLTE.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/dist/css/skins/_all-skins.min.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/dist/css/datatable.css')}}" rel="stylesheet">
+        <link href="{{url('public/backoffice/sweetalert/sweetalert2.css')}}" rel="stylesheet" type="text/css">
+        <link href="{{url('public/backoffice/bootstrap-daterangepicker/daterangepicker.css')}}" rel="stylesheet" type="text/css">
         <style type="text/css">
             .box-header {
             color: #444;
@@ -47,29 +47,29 @@
         </div>
         <!-- ./wrapper -->
         <!-- jQuery 3 -->
-        <script src="{{url('backoffice/bower_components/jquery/dist/jquery.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/jquery/dist/jquery.min.js')}}"></script>
         <!-- jQuery UI 1.11.4 -->
-        <script src="{{url('backoffice/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/jquery-ui/jquery-ui.min.js')}}"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
         <script>
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.7 -->
-        <script src="{{url('backoffice/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
         <!-- datepicker -->
-        <script src="{{url('backoffice/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js')}}"></script>
         <!-- FastClick -->
-        <script src="{{url('backoffice/bower_components/fastclick/lib/fastclick.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/fastclick/lib/fastclick.js')}}"></script>
         <!-- PACE -->
-        <script src="{{url('backoffice/bower_components/PACE/pace.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bower_components/PACE/pace.min.js')}}"></script>
         <!-- AdminLTE App -->
-        <script src="{{url('backoffice/dist/js/adminlte.min.js')}}"></script>
-        <script src="{{url('backoffice/dist/js/datatable.js')}}"></script>
-        <script src="{{url('backoffice/dist/js/chart.js')}}"></script>
-        <script src="{{url('backoffice/dist/js/chart-bundle.js')}}"></script>
-        <script src="{{url('backoffice/sweetalert/sweetalert2.min.js')}}"></script>
-        <script src="{{url('backoffice/bootstrap-daterangepicker/moment.min.js')}}"></script>
-        <script src="{{url('backoffice/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
+        <script src="{{url('public/backoffice/dist/js/adminlte.min.js')}}"></script>
+        <script src="{{url('public/backoffice/dist/js/datatable.js')}}"></script>
+        <script src="{{url('public/backoffice/dist/js/chart.js')}}"></script>
+        <script src="{{url('public/backoffice/dist/js/chart-bundle.js')}}"></script>
+        <script src="{{url('public/backoffice/sweetalert/sweetalert2.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bootstrap-daterangepicker/moment.min.js')}}"></script>
+        <script src="{{url('public/backoffice/bootstrap-daterangepicker/daterangepicker.js')}}"></script>
         @include('sweet::alert')
         <script type="text/javascript">
             var date = new Date();

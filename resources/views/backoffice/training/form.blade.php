@@ -46,7 +46,6 @@
                                 {!! Form::text('title_learning', isset($training->title_learning) ? $training->title_learning : old('title_learning') ?: null, ['class' => 'form-control','placeholder'=>'Judul Diklat']) !!}
                             </div>
                             <div class="form-group">
-                                <label class="required">
                                     Tanggal Diklat Mulai
                                 </label>
                                 {!! Form::text('date_training', isset($training->date_training) ? $training->date_training : old('date_training') ?: null, ['class' => 'form-control datepicker','placeholder'=>'Tanggal Diklat Mulai']) !!}
@@ -90,8 +89,7 @@
                                      @if ($training->follow == \App\Models\Training::FOLLOW)
                                         style="display:none;"
                                      @endif
-                                @endif
-                            >
+                                @endif>
                                 <label class="required">
                                     Alasan Tidak Mengikuti
                                 </label>
@@ -123,8 +121,9 @@
 @stop
 @section('script')
 <script type="text/javascript">
-    $('.datepicker').datepicker({
-        format: 'yyyy-mm-dd'
+    $('.datepicker').datepicker({format: 'yyyy-mm-dd'});
+    $(".js-select2").select2({
+        language: '{{ app()->getLocale() }}'
     });
     function check() {
         var follow = document.getElementById("follow");
